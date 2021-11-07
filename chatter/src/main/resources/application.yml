@@ -1,0 +1,40 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  datasource:
+    password: 2021
+    url: jdbc:postgresql://195.150.230.210:5434/2021_kucharzyk_oliwer
+    username: 2021_kucharzyk_oliwer
+    hikari:
+      schema: chatter
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+      show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: codebangcinema@gmail.com
+    password: qekvmiidqvfhhbvw
+
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+  thymeleaf:
+    suffix: .html
+    cache: false
+    prefix: classpath:/templates/
+    mode: HTML5
