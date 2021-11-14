@@ -1,6 +1,7 @@
 package pwsz.toik.chatter.registration;
 
 import lombok.AllArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,4 +20,8 @@ public class RegistrationController {
     public String confirm(@RequestParam("token") String token) {
         return registrationService.confirmToken(token);
     }
+
+
+
 }
+

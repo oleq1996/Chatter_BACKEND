@@ -20,8 +20,13 @@ public class ChatterApplication {
 		AppUserService appUserService = (AppUserService) app.getBean("appUserService");
 
 		AppUser devUser = new AppUser("dev","dev","dev", AppUserRole.ADMIN);
+		AppUser testUser = new AppUser("testuser","testuser","testuser", AppUserRole.USER);
+
 		appUserService.signUpUser(devUser);
 		appUserService.enableAppUser(devUser.getEmail());
+
+		appUserService.signUpUser(testUser);
+		appUserService.enableAppUser(testUser.getEmail());
 
 	}
 
