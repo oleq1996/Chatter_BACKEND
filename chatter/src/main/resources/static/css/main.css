@@ -70,6 +70,7 @@ body {
 select {
     overflow: auto;
     margin-top: 20px;
+    border-radius: 100px;
 }
 
 option {
@@ -90,4 +91,24 @@ h2 {
     display: flex;
     flex-direction: row;
     width: 70%;
+    padding: 15px;
+    background-color: #aaaaaa;
+    border-radius: 100px;
+}
+
+#conversation {
+    position: relative;
+    overflow: scroll;
+    z-index: -1;
+    margin-bottom: 10%
+}
+
+#send {
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+
+#text {
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
 }
