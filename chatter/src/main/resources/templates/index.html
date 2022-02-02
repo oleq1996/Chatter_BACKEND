@@ -12,14 +12,16 @@
 <body>
 <div id="sidebar">
     <h2>Hello, <span class="username" sec:authentication="name"></span>!</h2>
+    <button onclick="location.href = 'http://localhost:8080/logout';" style="padding: 15px; background-color: #aaa; border-color: #000; border-radius: 100px; margin-top: 20px;">Logout</button>
 
         <select name="topic"
                 id="topic"
                 class="form-control"
-                size="3">
-            <option selected="selected">Lifestyle</option>
-            <option>Travel</option>
-            <option>Career</option>
+                size="3"
+                style="border-radius: 15px;">
+            <option selected="selected" style="border-radius: 15px; padding-left: 15px;">Lifestyle</option>
+            <option style="border-radius: 15px; padding-left: 15px;">Travel</option>
+            <option style="border-radius: 15px; padding-left: 15px;">Career</option>
         </select>
 
 </div>

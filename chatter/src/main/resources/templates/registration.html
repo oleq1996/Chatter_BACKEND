@@ -14,16 +14,17 @@
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <div>
 </div>
 <div class="container">
-    <form class="form-signin" method="post" action="/registration">
+    <form class="form-signin" id="register_form" method="post" action="/registration">
         <h2 class="form-signin-heading">Please sign up</h2>
         <div class="alert alert-info" role="alert" th:text="${message}" th:if="${message}"></div>        <p>
         <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>        <p>
         <p>
-            <label for="username" class="sr-only">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+            <label for="userName" class="sr-only">Username</label>
+            <input type="text" id="userName" name="userName" class="form-control" placeholder="Username" required autofocus>
         </p>
         <p>
             <label for="email" class="sr-only">Password</label>
@@ -37,4 +38,29 @@
         <a href="/login" class="btn btn-lg btn-primary btn-block">Have an account? Sign in</a>
     </form>
 </div>
+<script>
+const serialize_form = form => JSON.stringify(
+  Array.from(new FormData(form).entries())
+       .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+);
+
+$('#register_form').on('submit', function(event) {
+  event.preventDefault();
+  const json = serialize_form(this);
+  $.ajax({
+    type: 'POST',
+    url: 'http://localhost:8080/registration',
+    dataType: 'json',
+    data: json,
+    contentType: 'application/json',
+    success: function(data) {
+        alert("Account has been created. Please confirm through an e-mail message.")
+        window.location.replace("http://localhost:8080/login");
+    },
+    error: function(xhr) {
+        console.log(xhr.status + xhr.statusText + xhr.responseText);
+    },
+  });
+});
+</script>
 </body></html>

@@ -18,7 +18,7 @@ $(document).ready(function() {
             '<td>' + mesg.from + '</td>' +
             '<td>' + mesg.topic + '</td>' +
             '<td>' + mesg.message + '</td>' +
-            '<td>' + mesg.time + '</td>' +
+            '<td>' + mesg.time.substring(0,10) + " " + mesg.time.substring(11,19) + '</td>' +
             '</tr>');
     }
 

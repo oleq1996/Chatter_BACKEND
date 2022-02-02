@@ -1,6 +1,8 @@
 package pwsz.toik.chatter.registration;
 
 import lombok.AllArgsConstructor;
+import netscape.javascript.JSObject;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pwsz.toik.chatter.appuser.AppUser;
@@ -46,7 +48,11 @@ public class RegistrationService {
                 request.getEmail(),
                 buildEmail(request.getUserName(),link));
 
-        return token;
+        String jsonstring = new JSONObject()
+                .put("token", token)
+                .toString();
+
+        return jsonstring;
     }
 
     @Transactional
