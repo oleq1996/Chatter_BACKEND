@@ -5,6 +5,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * Klasa bazowa dla rejestracji uzytkownika.
+ */
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode

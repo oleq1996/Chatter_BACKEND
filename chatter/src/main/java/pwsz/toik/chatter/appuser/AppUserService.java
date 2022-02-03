@@ -12,6 +12,9 @@ import pwsz.toik.chatter.registration.token.ConfirmationTokenService;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Klasa sluzaca do obslugi konta uzytkownika.
+ */
 @Service
 @AllArgsConstructor
 public class AppUserService implements UserDetailsService {
@@ -23,6 +26,13 @@ public class AppUserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
 
+    /**
+     * Loguje uzytkownika przy uzyciu jego adresu e-mail.
+     *
+     * @param email adres e-mail uzytkownika
+     * @return konto uzytkownika
+     * @throws UsernameNotFoundException blad zwracany w sytuacji, gdy nie znaleziono uzytkownika o podanym adresie e-mail
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return appUserRepository.findByEmail(email)
@@ -30,6 +40,12 @@ public class AppUserService implements UserDetailsService {
                         new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
     }
 
+    /**
+     * Metoda sluzaca do rejestracji uzytkownika.
+     *
+     * @param appUser przyjmuje obiekt AppUser, posiadajacy dane uzytkownika
+     * @return token uzytkownika wykorzystywany w celu aktywacji konta
+     */
     public String signUpUser(AppUser appUser){
 
         boolean userExists = appUserRepository
@@ -59,6 +75,11 @@ public class AppUserService implements UserDetailsService {
         return token;
     }
 
+    /**
+     * Metoda sluzaca do aktywacji konta.
+     *
+     * @param email przyjmuje adres e-mail uzytkownika
+     */
     public void enableAppUser(String email) {
         AppUser appUser = appUserRepository.findByEmail(email).orElseThrow(()->
                 new IllegalStateException(String.format(USER_NOT_FOUND,email)));

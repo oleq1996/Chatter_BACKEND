@@ -12,6 +12,9 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Klasa przechowujaca dane na temat konta uzytkownika.
+ */
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -38,6 +41,14 @@ public class AppUser implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false;
 
+    /**
+     * Konstruktor klasy AppUser
+     *
+     * @param username oznacza nazwe uzytkownika
+     * @param email oznacza adres e-mail uzytkownika
+     * @param password oznacza haslo uzytkownika
+     * @param appUserRole oznacza role, jaka jest przydzielana uzytkownikowi ( przyjmuje wartosci: USER / ADMIN )
+     */
     public AppUser(String username, String email, String password, AppUserRole appUserRole) {
         this.username = username;
         this.email = email;
@@ -45,37 +56,72 @@ public class AppUser implements UserDetails {
         this.appUserRole = appUserRole;
     }
 
+    /**
+     * Getter zwracajacy liste zautoryzowanych uzytkownikow.
+     *
+     * @return zwraca kolekcje
+     */
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
         return Collections.singletonList(authority);
     }
 
+    /**
+     * Getter zwracajacy haslo.
+     *
+     * @return haslo
+     */
     @Override
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Getter zwracajacy nazwe uzytkownika.
+     *
+     * @return nazwa
+     */
     @Override
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Zwraca informacje na temat przedawnienia konta.
+     *
+     * @return true / false
+     */
     @Override
     public boolean isAccountNonExpired() {
         return true; // for now
     }
 
+    /**
+     * Zwraca informacje na temat zablokowania konta.
+     *
+     * @return true / false
+     */
     @Override
     public boolean isAccountNonLocked() {
         return !locked;
     }
 
+    /**
+     * Zwraca informacje na temat przedawnienia danych logowania.
+     *
+     * @return true / false
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    /**
+     * Zwrocona wartosc oznacza, czy konto zostalo aktywowane, czy tez nie.
+     *
+     * @return true / false
+     */
     @Override
     public boolean isEnabled() {
         return enabled;

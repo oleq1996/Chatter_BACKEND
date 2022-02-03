@@ -8,6 +8,9 @@ import pwsz.toik.chatter.appuser.AppUser;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * Klasa odpowiadajaca za token aktywacyjny.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -38,6 +41,14 @@ public class ConfirmationToken {
             name = "app_user_id")
     private AppUser appUser;
 
+    /**
+     * Konstruktor tokeny aktywacyjnego.
+     *
+     * @param token token aktywacyjny
+     * @param createdAt czas utworzenia
+     * @param expiresAt czas przedawnienia
+     * @param appUser przypisane konto uzytkownika
+     */
     public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, AppUser appUser) {
         this.token = token;
         this.createdAt = createdAt;

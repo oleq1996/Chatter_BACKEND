@@ -11,9 +11,17 @@ import pwsz.toik.chatter.appuser.AppUserRepository;
 import pwsz.toik.chatter.appuser.AppUserRole;
 import pwsz.toik.chatter.appuser.AppUserService;
 
+/**
+ * Glowna klasa aplikacji.
+ */
 @SpringBootApplication
 public class ChatterApplication {
 
+	/**
+	 * Glowna metoda aplikacji.
+	 *
+	 * @param args -
+	 */
 	public static void main(String[] args) {
 		ConfigurableApplicationContext app = SpringApplication.run(ChatterApplication.class, args);
 

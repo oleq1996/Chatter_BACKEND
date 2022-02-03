@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * Klasa odpowiedzialna za wyswietlana wiadomosc.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,6 +21,13 @@ public class OutputMessage {
     private Date time = new Date();
 
 
+    /**
+     * Konstruktor wyswietlanej wiadomosci.
+     *
+     * @param from nadawca wiadomosci
+     * @param message tresc wiadomosci
+     * @param topic temat wiadomosci
+     */
     public OutputMessage(String from, String message, String topic) {
         this.from = from;
         this.message = message;

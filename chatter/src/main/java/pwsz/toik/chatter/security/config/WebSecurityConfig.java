@@ -11,6 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pwsz.toik.chatter.appuser.AppUserService;
 
+/**
+ * Klasa zawierajaca konfiguracje bezpieczenstwa aplikacji.
+ */
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
@@ -41,6 +44,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
+    /**
+     * Metoda zwracajaca obiekt autentykacyjny.
+     *
+     * @return daoAuthenticationProvider
+     */
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider =

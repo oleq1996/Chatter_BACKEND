@@ -15,6 +15,9 @@ import pwsz.toik.chatter.registration.token.ConfirmationTokenService;
 
 import java.time.LocalDateTime;
 
+/**
+ * Klasa odpowiedzialna za usluge rejestracji.
+ */
 @Service
 @AllArgsConstructor
 public class RegistrationService {
@@ -27,6 +30,12 @@ public class RegistrationService {
     private final static String EMAIL_ALREADY_CONFIRMED = "Email is already confirmed";
     private final static String TOKEN_EXPIRED = "Token has expired";
 
+    /**
+     * Metoda uslugi rejestracji.
+     *
+     * @param request obiekt zawierajacy dane rejestracyjne
+     * @return ciag znakow JSON
+     */
     public String register(RegistrationRequest request) {
 
         boolean isValidEmail = emailValidator.test(request.getEmail());
@@ -55,6 +64,12 @@ public class RegistrationService {
         return jsonstring;
     }
 
+    /**
+     * Metoda weryfikujaca uzycie tokenu aktywacyjnego.
+     *
+     * @param token token aktywacyjny
+     * @return "confirmed" jezeli token jest aktualny
+     */
     @Transactional
     public String confirmToken(String token){
         ConfirmationToken confirmationToken = confirmationTokenService

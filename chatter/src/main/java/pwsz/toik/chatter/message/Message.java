@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Klasa wiadomosci w pokojach rozmow.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
