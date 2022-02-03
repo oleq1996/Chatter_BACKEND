@@ -22,6 +22,9 @@ import java.util.Collections;
 @Entity
 public class AppUser implements UserDetails {
 
+    /**
+     * Identyfikator uzytkownika.
+     */
     @Id
     @SequenceGenerator(
             name = "app_user_seq",
@@ -33,12 +36,30 @@ public class AppUser implements UserDetails {
             generator = "app_user_seq"
     )
     private Long id;
+    /**
+     * Nazwa uzytkownika.
+     */
     private String username;
+    /**
+     * Adres e-mail uzytkownika.
+     */
     private String email;
+    /**
+     * Haslo uzytkownika.
+     */
     private String password;
+    /**
+     * Rola uzytkownika.
+     */
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
+    /**
+     * Czy konto zostalo zablokowane.
+     */
     private Boolean locked = false;
+    /**
+     * Czy konto zostalo aktywowane.
+     */
     private Boolean enabled = false;
 
     /**
